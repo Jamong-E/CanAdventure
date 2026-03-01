@@ -14,13 +14,15 @@ public class CanControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D)) { Roll(100); }
-
         if (transform.position.y < -5) {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
             transform.position = new Vector2(0, 3);
         }
     }
-    void Roll(float power) { rb.AddForce(new Vector2(power, 0)); }
+    public void Roll(float push, float spin)
+    {
+        rb.AddForce(new Vector3(push, 0, 0));
+        rb.AddTorque(-1 * spin);
+    }
 }
